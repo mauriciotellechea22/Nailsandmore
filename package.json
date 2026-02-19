@@ -1,0 +1,12 @@
+{
+    "name": "nails-and-more",
+    "version": "1.0.0",
+    "description": "Landing page – Nails and More Salón de Uñas, Montevideo",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js"
+    },
+    "dependencies": {
+        "express": "^4.18.2"
+    }
+}
