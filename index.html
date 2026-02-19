@@ -236,8 +236,6 @@
                     loading="lazy" /></div>
             <div class="gallery-item hidden" data-idx="18"><img src="assets/nail_19.jpg" alt="Trabajo de uñas 19"
                     loading="lazy" /></div>
-            <div class="gallery-item hidden" data-idx="19"><img src="assets/nail_20.jpg" alt="Trabajo de uñas 20"
-                    loading="lazy" /></div>
             <div class="gallery-item hidden" data-idx="20"><img src="assets/nail_21.jpg" alt="Trabajo de uñas 21"
                     loading="lazy" /></div>
             <div class="gallery-item hidden" data-idx="21"><img src="assets/nail_22.jpg" alt="Trabajo de uñas 22"
@@ -540,100 +538,86 @@
     </div>
 
     <script>
-        /* ===== Navbar scroll ===== */
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            navbar.classList.toggle('scrolled', window.scrollY > 50);
+            /* ===== Navbar scroll ===== *              const navbar = document.getElementById('navb        ;
+        window.addEventListener('scroll'            > {
+            navbar.classList.toggle('scrolled', window        ollY         );
         });
 
-        /* ===== Mobile menu ===== */
-        const hamburger = document.getElementById('hamburger');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const closeMenu = document.getElementById('closeMenu');
-        const mobileLinks = mobileMenu.querySelectorAll('.mobile-link, .btn');
+        /* ===        obile menu ==== /
+        const hamburger = document.get        entById('hamburg ');
+        const mobileMenu = document.g        ementById('mobi enu');
+        const closeMenu = documen        tElementById('closeMenu');
+        const mobileLinks = mobileMenu.queryS        torAll('.mobile-link, .btn');
 
-        hamburger.addEventListener('click', () => mobileMenu.classList.add('open'));
-        closeMenu.addEventListener('click', () => mobileMenu.classList.remove('open'));
-        mobileLinks.forEach(l => l.addEventListener('click', () => mobileMenu.classList.remove('open')));
+        hamburger.addEventListener('click', ()        mobileMenu.classList.add('open'));
+        closeMenu.addEventListener('click', (         mobileMenu.classList.remove('open'));
+        mobileLinks.forEach(l => l.addEventListener('click',        => mobileMenu.classList.remove('ope        );
 
         /* ===== Gallery lightbox ===== */
-        const galleryItems = Array.from(document.querySelectorAll('.gallery-item img'));
-        const lightbox = document.getElementById('lightbox');
-        const lbImg = document.getElementById('lightboxImg');
-        const lbClose = document.getElementById('lightboxClose');
-        const lbPrev = document.getElementById('lightboxPrev');
-        const lbNext = document.getElementById('lightboxNext');
-        let currentIdx = 0;
+        const galleryItems = Array        m(document.que ectorAll('.gallery-item img'));
+               st lightbox ent.getElementById('lightbox');
+        co        lbImg = docum tElementById('lightboxImg');
+        const l        se = documen ementById('lightboxClose');
+        const l        v = document mentById('lightboxPrev');
+        const lbN        = document.getElement        ('lightboxNext');
+        let            ntIdx = 0;
 
-        function openLightbox(idx) {
-            currentIdx = idx;
-            lbImg.src = galleryItems[idx].src;
-            lbImg.alt = galleryItems[idx].alt;
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-        function closeLightbox() {
-            lightbox.classList.remove('active');
+                  tion openLightbox(idx) {
+                      entIdx = idx;
+            lbImg.src            leryItems[idx].src;
+            lb            t = galleryItems[idx].alt;
+            li        ox        ssList.add('active');
+                  document.body.style.overflow = 'hidd                   }
+        function closeLigh        ()                   lightbox.classList.remove('active');
             document.body.style.overflow = '';
-        }
-        function showPrev() { openLightbox((currentIdx - 1 + galleryItems.length) % galleryItems.length); }
-        function showNext() { openLightbox((currentIdx + 1) % galleryItems.length); }
+             
+        function showPrev() { openLightbox((currentIdx - 1 + galleryItems.leng        % galleryItems.length); }
+        function showNext() { openLightbox            entIdx + 1) % galleryItems.length); }
 
-        document.querySelectorAll('.gallery-item').forEach((item, idx) => {
-            item.addEventListener('click', () => openLightbox(idx));
+        document.q        Selec        ll('.gallery-item').forEach((item, idx) => {
+                item.addEventListener('click', () => openLightbox(idx));
         });
 
-        lbClose.addEventListener('click', closeLightbox);
-        lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
-        lbPrev.addEventListener('click', e => { e.stopPropagation(); showPrev(); });
-        lbNext.addEventListener('click', e => { e.stopPropagation(); showNext(); });
-        document.addEventListener('keydown', e => {
-            if (!lightbox.classList.contains('active')) return;
-            if (e.key === 'ArrowLeft') showPrev();
-            if (e.key === 'ArrowRight') showNext();
-            if (e.key === 'Escape') closeLightbox();
+        lbClose.a        entListener('click', closeLightbox);
+        lightbox.addEventListener('click         => { if (e.target === lightbox) closeLightbox(); });
+        lbPrev.addEvent        ener('click', e => { e.stopPropagation(); sh            (); });
+        lbNext.addEventListener('click', e =            stopPropagation(); showNex ); });
+                 ument.addEventListener('keydown', e => {                   if (!lightbox.cl st.contains('acti        ) ret        
+            if (e.key === 'ArrowLef        showPrev();
+           if (e.key === 'ArrowRight') showNext(                   if (e. y === 'Escape') closeLightbox();
         });
 
-        /* ===== Load more gallery ===== */
-        const loadMoreBtn = document.getElementById('loadMoreBtn');
-        const hiddenItems = document.querySelectorAll('.gallery-item.hidden');
-        let allShown = false;
-
-        loadMoreBtn.addEventListener('click', () => {
+               ===== Load more gallery        == */
+        const loadMoreBtn = document.get            tById('loadMoreBt                     const hiddenItems = document.querySelectorAll('.gal                m.hidden');
+        let allShown = false;                  loadMoreBtn.add            istener('                () => {
             if (!allShown) {
-                hiddenItems.forEach(i => i.classList.remove('hidden'));
-                loadMoreBtn.textContent = 'Ver menos ↑';
+                                ems.forEach(i => i.classList.remove('hidden'));
+                        loadMoreBt                ntent = 'Ver menos ↑';
                 allShown = true;
-            } else {
-                hiddenItems.forEach(i => i.classList.add('hidden'));
-                loadMoreBtn.textContent = 'Ver más trabajos ↓';
-                allShown = false;
-                document.getElementById('galeria').scrollIntoView({ behavior: 'smooth' });
-            }
-        });
-
-        /* ===== FAQ accordion ===== */
-        document.querySelectorAll('.faq-question').forEach(btn => {
+            } else                                    denItems.forEach(i => i.classLis        d('hidden'));
+                loadMoreBtn.textContent = 'Ver            rabajos ↓';
+                allShown =                                document.getElementById                a').scrollIntoView({ behavior: 'smooth' });
+                    }
+        });                  /* ===== FAQ accordion ===== */
+        document.querySelectorAll('.faq-questio                ach(btn => {
             btn.addEventListener('click', () => {
-                const item = btn.closest('.faq-item');
-                const isOpen = item.classList.contains('open');
-                // Close all
-                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-                document.querySelectorAll('.faq-question').forEach(b => b.setAttribute('aria-expanded', 'false'));
-                // Toggle current
-                if (!isOpen) {
-                    item.classList.add('open');
-                    btn.setAttribute('aria-expanded', 'true');
-                }
+                const item = btn.clo                aq-item');
+                        const isOpen =                    sList.contains('open');
+                          // Close all
+                document.que                or            faq-        ').fo        h(i => i.classList.remove('open'                        document.querySelectorAll('.faq-questio            rEach(b => b.setAttribu                -expanded', 'false'));
+                          // Toggle current
+                           f (!isOpen) {
+                    item.class                    open');
+                    bt                ri            aria        anded', 'true');
+                    }
             });
         });
 
         /* ===== Scroll reveal ===== */
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(e => {
+        co            server = new Intersectio            ver(entries => {
+            entries.forE            => {
                 if (e.isIntersecting) {
-                    e.target.style.opacity = '1';
-                    e.target.style.transform = 'translateY(0)';
+                               get.style.opacity = '1                  e.target.style.transform = 'translateY(0)';
                     observer.unobserve(e.target);
                 }
             });
